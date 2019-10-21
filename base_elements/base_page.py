@@ -1,4 +1,4 @@
-from conftest import CONFIG
+import conftest
 from driver.driver import Driver
 
 
@@ -8,4 +8,4 @@ class BasePage:
         self.driver = Driver().get_instance()
 
     def open(self):
-        self.driver.get(CONFIG["BASE_URL"])
+        self.driver.get(conftest.CONFIG["BASE_URL"])
