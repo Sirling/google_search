@@ -3,7 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from base_elements.base_page import BasePage
-from utilities import settings
+from conftest import CONFIG
 
 
 class NavigationBar(BasePage):
@@ -13,9 +13,9 @@ class NavigationBar(BasePage):
 
     def __init__(self):
         super(NavigationBar, self).__init__()
-        component = WebDriverWait(self.driver, settings.component_wait_time) \
+        component = WebDriverWait(self.driver, CONFIG["COMPONENT_WAIT_TIME"]) \
             .until(EC.visibility_of_element_located(self.navigation_bar), 'Відсутній блок пошуку')
-        self.wait = WebDriverWait(component, settings.element_wait_time)
+        self.wait = WebDriverWait(component, CONFIG["ELEMENT_WAIT_TIME"])
 
     def navigate_to_page(self, page_number):
 

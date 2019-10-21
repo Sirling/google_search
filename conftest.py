@@ -23,16 +23,10 @@ def get_config(request):
     import utilities
 
     project_path = os.path.dirname(utilities.__file__)
-    environment = dict(PROD=os.path.join(project_path, 'config.prod.json'))
+    environment = dict(PROD=os.path.join(project_path, 'config.json'))
 
     config_file_path = environment[request.config.getoption('--environment').upper()]
     with open(config_file_path) as config_file:
         global CONFIG
         CONFIG = json.load(config_file)
     CONFIG['BROWSER'] = request.config.getoption('--browser-name')
-    print(f"{CONFIG}")
-
-
-@pytest.fixture()
-def try_new(request):
-    print('1232131')

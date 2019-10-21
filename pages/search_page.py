@@ -4,8 +4,13 @@ from components.search_results import SearchResults
 
 class SearchPage:
 
-    search_results = SearchResults()
-    navigation_bar = NavigationBar()
+    @property
+    def search_results(self):
+        return SearchResults()
+
+    @property
+    def navigation_bar(self):
+        return NavigationBar()
 
     def search_domain_in_pages(self, domain_name, number_of_pages):
         for page in range(1, number_of_pages):

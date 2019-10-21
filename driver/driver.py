@@ -2,7 +2,7 @@ import os
 from selenium import webdriver
 
 import conftest
-from utilities import settings, drivers_executables
+from utilities import drivers_executables
 
 
 class Driver(object):
@@ -11,7 +11,7 @@ class Driver(object):
     @classmethod
     def get_instance(cls):
         webdrivers_path = os.path.dirname(drivers_executables.__file__)
-        browser = conftest.CONFIG['BROWSER']
+        browser = conftest.CONFIG['BROWSER'].lower()
 
         if cls.__instance is None:
             if browser == "chrome":

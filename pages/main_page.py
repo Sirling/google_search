@@ -4,4 +4,6 @@ from components.search_bar import SearchBar
 
 class MainPage(BasePage):
 
-    search_bar = SearchBar()
+    @property
+    def search_bar(self):
+        return SearchBar()
