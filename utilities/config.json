@@ -1,0 +1,7 @@
+{
+    "HOST": "google.com",
+    "BASE_URL": "https://google.com",
+    "ELEMENT_WAIT_TIME": 3,
+    "COMPONENT_WAIT_TIME": 10,
+    "EMAIL_WAIT_TIME": 20
+  }
