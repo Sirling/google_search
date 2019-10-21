@@ -17,3 +17,10 @@ class SearchResults(BasePage):
         component = WebDriverWait(self.driver, settings.component_wait_time) \
             .until(EC.visibility_of_element_located(self.search_list), 'Відсутній блок пошуку')
         self.wait = WebDriverWait(component, settings.element_wait_time)
+
+    def domain_extractor(self):
+        domains = None
+        links = self.wait.until(EC.presence_of_all_elements_located(self.search_domains), 'Відсутні елементи з доменами')
+        for link in links:
+            domains.append(link)
+        return domains

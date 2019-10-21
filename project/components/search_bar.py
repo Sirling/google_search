@@ -18,5 +18,8 @@ class SearchBar(BasePage):
             .until(EC.visibility_of_element_located(self.search_block), 'Відсутній блок пошуку')
         self.wait = WebDriverWait(component, settings.element_wait_time)
 
-    def fill_search_field(self):
-        pass
+    def fill_search_field(self, search_word):
+        self.wait.until(EC.visibility_of_element_located(self.search_input), 'Відсутнє поле пошуку')\
+            .send_keys(search_word)
+        self.wait.until(EC.visibility_of_element_located(self.search_input), 'Відсутнє поле пошуку')\
+            .click()

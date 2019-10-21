@@ -20,6 +20,10 @@ class NavigationBar(BasePage):
     def navigate_to_page(self, page_number):
 
         page = self.wait.until(EC.presence_of_all_elements_located(self.navigation_page),
-                               "Блок пагінації відсутній")[page_number]
-        print(type(page))
+                               "Елементи пагінації відсутні")
+        page[page_number].click()
 
+    def search_in_pages(self, number_of_pages):
+
+        for page in range(1, number_of_pages):
+            self.navigate_to_page(page)
