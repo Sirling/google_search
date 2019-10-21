@@ -9,8 +9,8 @@ from utilities import settings
 class SearchResults(BasePage):
 
     search_list = (By.CSS_SELECTOR, 'div[id=res]')
-    search_titles = (By.CSS_SELECTOR, 'h3[class=LC20lb]')
-    search_domains = (By.CSS_SELECTOR, 'div[class=r] a')
+    search_title = (By.CSS_SELECTOR, 'h3[class=LC20lb]')
+    search_domain = (By.CSS_SELECTOR, 'div[class=r] a')
 
     def __init__(self):
         super(SearchResults, self).__init__()
@@ -18,9 +18,19 @@ class SearchResults(BasePage):
             .until(EC.visibility_of_element_located(self.search_list), 'Відсутній блок пошуку')
         self.wait = WebDriverWait(component, settings.element_wait_time)
 
-    def domain_extractor(self):
+    def domains(self):
         domains = None
-        links = self.wait.until(EC.presence_of_all_elements_located(self.search_domains), 'Відсутні елементи з доменами')
+        links = self.wait.until(EC.presence_of_all_elements_located(self.search_domain),
+                                'Відсутні елементи з доменами')
         for link in links:
             domains.append(link)
         return domains
+
+    def search_in_title(self, word, results_range):
+        titles = self.wait.until(EC.presence_of_all_elements_located(self.search_title),
+                                 'Відсутні елементи з тайтлами')
+        for item in range(1, results_range):
+            if word in titles[item]:
+                return True
+            else:
+                return False
