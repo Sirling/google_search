@@ -6,6 +6,9 @@ from pages.search_page import SearchPage
 class TestSearchDomain(BaseTest):
 
     def test_find_domain(self):
+        """
+        Пошук домена серед результатів пошукового результату
+        """
         main_page = MainPage()
         main_page.open()
         main_page.search_bar.search_for(search_word="automation")

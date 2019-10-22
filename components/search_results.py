@@ -19,17 +19,32 @@ class SearchResults(BasePage):
         self.wait = WebDriverWait(component, conftest.CONFIG["ELEMENT_WAIT_TIME"])
 
     def domains(self):
+        """
+        Пошук усіх доменів у рещультатах пошуку
+        :return: список усіх доменів
+        """
+        # створення порожнього списку доменів
         domains = []
+        # список усіх вебелементів з доменами
         links = self.wait.until(EC.presence_of_all_elements_located(self.search_domain),
                                 'Відсутні елементи з доменами')
         for link in links:
+            # запис кожного домена з вебелемента у список
             domains.append(link.text)
         return domains
 
     def search_in_title(self, word, results_range):
+        """
+        Пошук результату у тайтлі на сторінці результатів
+        :param word: строка для пошуку
+        :param results_range: кількість результатів для пошуку (максимум - 9)
+        :return: True -  якщо є співпадіння, в іншому випадку - False
+        """
+        # пошук усіх тайтлів у результатах пошуку
         titles = self.wait.until(EC.presence_of_all_elements_located(self.search_title),
                                  'Відсутні елементи з тайтлами')
         for item in range(0, results_range):
+            # пошук заданої строки у кожному тайтлі
             if word in titles[item].text.lower():
                 return True
             else:

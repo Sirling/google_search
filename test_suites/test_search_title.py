@@ -6,6 +6,9 @@ from pages.search_page import SearchPage
 class TestSearchTitle(BaseTest):
 
     def test_search_title(self):
+        """
+        Пошук слова у тайтлах результатів на першій сторінці
+        """
         main_page = MainPage()
         main_page.open()
         main_page.search_bar.search_for("automation")

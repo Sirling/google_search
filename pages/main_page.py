@@ -4,6 +4,7 @@ from components.search_bar import SearchBar
 
 class MainPage(BasePage):
 
+    # lazy ініціалізація компоненту
     @property
     def search_bar(self):
         return SearchBar()
