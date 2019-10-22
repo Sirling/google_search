@@ -1,5 +1,5 @@
 {
     "BASE_URL": "https://google.com",
-    "ELEMENT_WAIT_TIME": 3,
+    "ELEMENT_WAIT_TIME": 5,
     "COMPONENT_WAIT_TIME": 10
   }

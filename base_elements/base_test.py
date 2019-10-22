@@ -7,5 +7,5 @@ class BaseTest:
         self.driver = Driver().get_instance()
 
     def teardown(self):
-        self.driver.close()
-        self.driver.quit()
+        Driver().close()
+        Driver().quit()

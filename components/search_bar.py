@@ -21,5 +21,5 @@ class SearchBar(BasePage):
     def search_for(self, search_word):
         self.wait.until(EC.visibility_of_element_located(self.search_input), 'Відсутнє поле пошуку')\
             .send_keys(search_word)
-        self.wait.until(EC.visibility_of_element_located(self.search_input), 'Відсутнє поле пошуку')\
+        self.wait.until(EC.visibility_of_element_located(self.search_button), 'Відсутня кнопка пошуку')\
             .click()

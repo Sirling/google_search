@@ -21,7 +21,7 @@ class NavigationBar(BasePage):
 
         page = self.wait.until(EC.presence_of_all_elements_located(self.navigation_page),
                                "Елементи пагінації відсутні")
-        page[page_number].click()
+        page[page_number-1].click()
 
     def search_in_pages(self, number_of_pages):
 

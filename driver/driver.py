@@ -12,10 +12,13 @@ class Driver(object):
     def get_instance(cls):
         webdrivers_path = os.path.dirname(drivers_executables.__file__)
         browser = conftest.CONFIG['BROWSER'].lower()
+        chromeoptions = webdriver.ChromeOptions()
+        chromeoptions.add_argument('--start-maximized')
+        chromeoptions.add_argument('--lang=en')
 
         if cls.__instance is None:
             if browser == "chrome":
-                cls.__instance = webdriver.Chrome(executable_path=os.path.join(webdrivers_path, "chromedriver.exe"))
+                cls.__instance = webdriver.Chrome(options=chromeoptions, executable_path=os.path.join(webdrivers_path, "chromedriver.exe"))
             if browser == "firefox":
                 cls.__instance = webdriver.Firefox(executable_path=os.path.join(webdrivers_path,
                                                                                 "utilities/drivers_executables/"

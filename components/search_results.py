@@ -10,7 +10,7 @@ class SearchResults(BasePage):
 
     search_list = (By.CSS_SELECTOR, 'div[id=res]')
     search_title = (By.CSS_SELECTOR, 'h3[class=LC20lb]')
-    search_domain = (By.CSS_SELECTOR, 'div[class=r] a')
+    search_domain = (By.CSS_SELECTOR, 'cite[class*="iUh30"]')
 
     def __init__(self):
         super(SearchResults, self).__init__()
@@ -19,18 +19,18 @@ class SearchResults(BasePage):
         self.wait = WebDriverWait(component, conftest.CONFIG["ELEMENT_WAIT_TIME"])
 
     def domains(self):
-        domains = None
+        domains = []
         links = self.wait.until(EC.presence_of_all_elements_located(self.search_domain),
                                 'Відсутні елементи з доменами')
         for link in links:
-            domains.append(link)
+            domains.append(link.text)
         return domains
 
     def search_in_title(self, word, results_range):
         titles = self.wait.until(EC.presence_of_all_elements_located(self.search_title),
                                  'Відсутні елементи з тайтлами')
-        for item in range(1, results_range):
-            if word in titles[item]:
+        for item in range(0, results_range):
+            if word in titles[item].text.lower():
                 return True
             else:
                 return False
